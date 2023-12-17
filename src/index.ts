@@ -16,8 +16,7 @@ async function main() {
     await untilPositiveBalance(walletItems)
 
     console.log('\n/////// TRANSFER ///////\n')
-    await sendConsolidatedTransactions(walletItems)
-
+   
     // Mint times
     const numberOfTimes = 1_000
     let successCount = 0;
@@ -25,7 +24,7 @@ async function main() {
 
     while (successCount < numberOfTimes) {
         try {
-            await sendConsolidatedTranSsactions(walletItems)
+            await sendConsolidatedTransactions(walletItems)
             successCount++;
             console.log(`MINT ${attemptCount + 1} SUCCESS: `);
             // Delay 1s
