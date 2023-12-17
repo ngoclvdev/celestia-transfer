@@ -18,8 +18,27 @@ async function main() {
     console.log('\n/////// TRANSFER ///////\n')
     await sendConsolidatedTransactions(walletItems)
 
-    console.log()
-    await sleep(30_000)
+    // Mint times
+    const numberOfTimes = 1_000
+    let successCount = 0;
+    let attemptCount = 0;
+
+    while (successCount < numberOfTimes) {
+        try {
+            await sendConsolidatedTranSsactions(walletItems)
+            successCount++;
+            console.log(`MINT ${attemptCount + 1} SUCCESS: `);
+            // Delay 1s
+            await new Promise(resolve => setTimeout(resolve, 1_000));
+        } catch (error) {
+            console.error(`MINT ${attemptCount + 1} ERROR: `, error);
+            // Delay 1s
+            await new Promise(resolve => setTimeout(resolve, 1_000));
+        }
+        attemptCount++;
+    }
+
+    console.log(`MINT TIMES: ${attemptCount}, SUCCESS TIMES: ${successCount}`);
 
     console.log('\n/////// BALANCE ///////\n')
     await printBalances(walletItems, true, true)
